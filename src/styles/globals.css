@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --clr-primary-500: hsl(144, 49%, 47%);
+  --clr-secondary-400: hsl(0, 79%, 63%);
+
+  --clr-neutral-100: hsl(0, 0%, 100%);
+  --clr-neutral-700: hsl(0, 0%, 74%);
+
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.5rem;
+}
