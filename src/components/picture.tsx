@@ -16,6 +16,7 @@ const Picture: FC<{ photo: Photo }> = ({ photo }) => {
         fill
         style={{ objectFit: "cover", objectPosition: "center" }}
         alt={title}
+        sizes="100%"
       />
     </div>
   );
