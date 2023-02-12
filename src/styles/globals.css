@@ -9,7 +9,11 @@
   --clr-neutral-100: hsl(0, 0%, 100%);
   --clr-neutral-700: hsl(0, 0%, 74%);
 
-  --fs-md: 1rem;
+  --fs-sm: 0.625px;
+  --fs-md: 0.875rem;
   --fs-lg: 1.125rem;
   --fs-xl: 1.5rem;
+}
+
+@layer components {
 }
