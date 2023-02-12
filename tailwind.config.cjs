@@ -23,7 +23,16 @@ module.exports = {
           100: "var(--clr-neutral-100)",
           700: "var(--clr-neutral-700)",
         }
+      },
+      height: {
+        header: 'var(--header-height)',
+        main: 'calc(100vh - var(--header-height))'
+      },
+      minHeight: {
+        header: 'var(--header-height)',
+        main: 'calc(100vh - var(--header-height))'
       }
+
     },
   },
   plugins: [],

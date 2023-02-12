@@ -13,6 +13,8 @@
   --fs-md: 0.875rem;
   --fs-lg: 1.125rem;
   --fs-xl: 1.5rem;
+
+  --header-height: 5rem;
 }
 
 @layer components {

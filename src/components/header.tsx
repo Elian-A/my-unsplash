@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Header = () => {
   return (
-    <header className="flex gap-4 py-2 font-sans text-md">
+    <header className="min-h-header flex gap-4 py-4 font-sans text-md">
       <div className="relative w-32">
         <Image
           src="my_unsplash_logo.svg"
