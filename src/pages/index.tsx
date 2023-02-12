@@ -1,31 +1,32 @@
 import type { GetServerSidePropsContext, NextPage } from "next";
 import type { Session } from "next-auth";
-import { signIn, signOut } from "next-auth/react";
-import Layout from "../../components/layout";
+import Layout from "../components/layout";
+import Picture from "../components/picture";
 import { getServerAuthSession } from "../server/auth";
 
-const Home: NextPage<{ authData: Session }> = ({ authData }) => {
-  console.log(authData);
+export interface Photo {
+  albumId: number;
+  id: number;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
+  large?: boolean;
+}
+
+const Home: NextPage<{ authData: Session; photos: Photo[] }> = ({
+  authData,
+  photos,
+}) => {
+  console.log({ authData, photos });
   return (
     <Layout title="My unsplash | Home">
-      <button
-        onClick={() => {
-          signIn().catch(() => {
-            console.log("Signed in");
-          });
-        }}
-      >
-        SignIn
-      </button>
-      <button
-        onClick={() => {
-          signOut().catch(() => {
-            console.log("Signed out");
-          });
-        }}
-      >
-        SignOut
-      </button>
+      <div className="grid items-center">
+        <div className="grid-wrapper min-h-main gap-7">
+          {photos.map((photo) => (
+            <Picture key={photo.id} photo={photo} />
+          ))}
+        </div>
+      </div>
     </Layout>
   );
 };
@@ -40,7 +41,17 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     };
   }
-  return { props: { authData } };
+  const photoResponse = await fetch(
+    "https://jsonplaceholder.typicode.com/photos"
+  );
+  const photos = (await photoResponse.json()) as Photo[];
+  const firstTwenty = photos
+    .slice(0, 21)
+    .map((photo) => ({ ...photo, large: Math.random() < 0.5 }));
+
+  console.log({ photoResponse, firstTen: firstTwenty });
+
+  return { props: { authData, photos: firstTwenty } };
 }
 
 export default Home;
