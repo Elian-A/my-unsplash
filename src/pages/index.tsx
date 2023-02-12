@@ -17,7 +17,6 @@ const Home: NextPage<{ authData: Session; photos: Photo[] }> = ({
   authData,
   photos,
 }) => {
-  console.log({ authData, photos });
   return (
     <Layout title="My unsplash | Home">
       <div className="grid items-center">
@@ -48,8 +47,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const firstTwenty = photos
     .slice(0, 21)
     .map((photo) => ({ ...photo, large: Math.random() < 0.5 }));
-
-  console.log({ photoResponse, firstTen: firstTwenty });
 
   return { props: { authData, photos: firstTwenty } };
 }
