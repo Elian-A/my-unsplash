@@ -1,15 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   return (
     <header className="flex min-h-header gap-4 pt-8 font-sans text-md">
       <div className="relative w-32">
-        <Image
-          src="my_unsplash_logo.svg"
-          alt="my unsplash log"
-          fill
-          style={{ objectFit: "contain" }}
-        />
+        <Link href={"/"}>
+          <Image
+            src="my_unsplash_logo.svg"
+            alt="my unsplash log"
+            fill
+            style={{ objectFit: "contain" }}
+          />
+        </Link>
       </div>
       <div className="flex gap-3 rounded-xl border pl-3">
         {/* Todo: Make the icon live inside input */}
