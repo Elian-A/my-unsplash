@@ -1,13 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import type { ChangeEvent } from "react";
 import { searchContext } from "../context/search";
 
 const Header = () => {
-  const { searchText, setSearchText } = useContext(searchContext);
+  const { setSearchText } = useContext(searchContext);
+
+  const [debounceTimeOut, setDebounceTimeOut] = useState<
+    string | NodeJS.Timeout
+  >("");
+
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
+    const text = e.target.value;
+    clearTimeout(debounceTimeOut);
+    const debounceTimeOutId = setTimeout(() => {
+      setSearchText(text);
+    }, 2000);
+
+    setDebounceTimeOut(debounceTimeOutId);
   };
   return (
     <header className="flex min-h-header gap-4 pt-8 font-sans text-md">
@@ -29,7 +40,6 @@ const Header = () => {
           className="bg-transparent"
           placeholder="Search by name"
           onChange={handleSearch}
-          value={searchText}
         />
       </div>
       <div className=" ml-auto w-[137px]">
