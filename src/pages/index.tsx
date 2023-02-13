@@ -2,7 +2,7 @@ import type { Photo } from "@prisma/client";
 import type { GetServerSidePropsContext, NextPage } from "next";
 import type { Session } from "next-auth";
 import Layout from "../components/layout";
-import Picture from "../components/picture";
+import Photos from "../components/photos";
 import { getServerAuthSession } from "../server/auth";
 import { getUserPhotos } from "../utils/photo";
 
@@ -16,7 +16,7 @@ const Home: NextPage<{ authData: Session; userPhotos: Photo[] }> = ({
           {userPhotos.length === 0 ? (
             <h2>You have no photos :c</h2>
           ) : (
-            userPhotos.map((photo) => <Picture key={photo.id} photo={photo} />)
+            <Photos photos={userPhotos} />
           )}
         </div>
       </div>
