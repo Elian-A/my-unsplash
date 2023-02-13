@@ -7,7 +7,7 @@ const Picture: FC<{ photo: Photo }> = ({ photo }) => {
   return (
     <div
       className={`relative ${
-        true ? "row-span-2" : ""
+        Math.random() > 0.5 ? "row-span-2" : ""
       } overflow-auto rounded-xl shadow-lg shadow-slate-500`}
     >
       <Image
