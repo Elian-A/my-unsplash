@@ -1,22 +1,22 @@
+import type { Photo } from "@prisma/client";
 import Image from "next/image";
 import type { FC } from "react";
-import type { Photo } from "../pages";
 
 const Picture: FC<{ photo: Photo }> = ({ photo }) => {
-  const { title, url } = photo;
-  const large = photo.large ? photo.large : false;
+  const { url, label } = photo;
   return (
     <div
       className={`relative ${
-        large ? "row-span-2" : ""
+        true ? "row-span-2" : ""
       } overflow-auto rounded-xl shadow-lg shadow-slate-500`}
     >
       <Image
         src={url}
         fill
         style={{ objectFit: "cover", objectPosition: "center" }}
-        alt={title}
+        alt={label}
         sizes="100%"
+        priority={true}
       />
     </div>
   );
