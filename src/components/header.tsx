@@ -4,16 +4,16 @@ import Link from "next/link";
 const Header = () => {
   return (
     <header className="flex min-h-header gap-4 pt-8 font-sans text-md">
-      <div className="relative w-32">
-        <Link href={"/"}>
+      <Link href={"/"} className="w-32">
+        <div className="relative h-full w-full">
           <Image
             src="my_unsplash_logo.svg"
             alt="my unsplash log"
             fill
             style={{ objectFit: "contain" }}
           />
-        </Link>
-      </div>
+        </div>
+      </Link>
       <div className="flex gap-3 rounded-xl border pl-3">
         {/* Todo: Make the icon live inside input */}
         <Image src="search.svg" alt="search" width={18} height={18} />
