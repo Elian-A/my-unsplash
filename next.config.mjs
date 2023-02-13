@@ -10,10 +10,11 @@
 const config = {
   reactStrictMode: true,
   images:{
+    /* TODO: Add hostname dynamically */
     remotePatterns:[
       {
         protocol: 'https',
-        hostname: 'via.placeholder.com'
+        hostname: '**.com'
       }
     ]
   },
