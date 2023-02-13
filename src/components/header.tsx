@@ -1,7 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
+import type { ChangeEvent } from "react";
+import { searchContext } from "../context/search";
 
 const Header = () => {
+  const { searchText, setSearchText } = useContext(searchContext);
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+  };
   return (
     <header className="flex min-h-header gap-4 pt-8 font-sans text-md">
       <Link href={"/"} className="w-32">
@@ -21,6 +28,8 @@ const Header = () => {
           type="text"
           className="bg-transparent"
           placeholder="Search by name"
+          onChange={handleSearch}
+          value={searchText}
         />
       </div>
       <div className=" ml-auto w-[137px]">
