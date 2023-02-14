@@ -3,13 +3,20 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import type { ChangeEvent } from "react";
 import { SearchContext } from "../context/searchContext";
+import { ModalContext } from "../context/modalContext";
 
 const Header = () => {
   const { setSearchText } = useContext(SearchContext);
+  const { toggleModalView, modalView, setType } = useContext(ModalContext);
 
   const [debounceTimeOut, setDebounceTimeOut] = useState<
     string | NodeJS.Timeout
   >("");
+
+  const handleModal = () => {
+    setType("add");
+    toggleModalView(!modalView);
+  };
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;
@@ -17,7 +24,6 @@ const Header = () => {
     const debounceTimeOutId = setTimeout(() => {
       setSearchText(text);
     }, 1000);
-
     setDebounceTimeOut(debounceTimeOutId);
   };
   return (
@@ -43,7 +49,10 @@ const Header = () => {
         />
       </div>
       <div className=" ml-auto w-[137px]">
-        <button className=" h-full w-full rounded-xl bg-primary-500 p-3 font-bold text-neutral-100">
+        <button
+          onClick={handleModal}
+          className=" h-full w-full rounded-xl bg-primary-500 p-3 font-bold text-neutral-100"
+        >
           Add a photo
         </button>
       </div>
