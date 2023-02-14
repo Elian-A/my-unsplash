@@ -16,7 +16,7 @@ const Header = () => {
     clearTimeout(debounceTimeOut);
     const debounceTimeOutId = setTimeout(() => {
       setSearchText(text);
-    }, 2000);
+    }, 1000);
 
     setDebounceTimeOut(debounceTimeOutId);
   };
