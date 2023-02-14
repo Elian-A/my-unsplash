@@ -1,11 +1,15 @@
 import type { FC, ReactElement } from "react";
 import Head from "next/head";
 import Header from "./header";
+import { useContext } from "react";
+import { ModalContext } from "../context/modalContext";
+import Modal from "./modal";
 
 const Layout: FC<{
   children: ReactElement | ReactElement[];
   title: string;
 }> = ({ children, title }) => {
+  const { modalView } = useContext(ModalContext);
   return (
     <div className="flex min-h-screen flex-col gap-10 px-20">
       <Head>
@@ -15,6 +19,7 @@ const Layout: FC<{
       </Head>
       <Header />
       <main className="">{children}</main>
+      {modalView ? <Modal /> : <div></div>}
     </div>
   );
 };
