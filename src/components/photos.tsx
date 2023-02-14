@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import type { FC } from "react";
-import { searchContext } from "../context/search";
+import { SearchContext } from "../context/searchContext";
 import type { Photo } from "@prisma/client";
 import Picture from "./picture";
 
 const Photos: FC<{ photos: Photo[] }> = ({ photos }) => {
-  const { searchText } = useContext(searchContext);
+  const { searchText } = useContext(SearchContext);
   const filteredPhotos = photos.filter((photo) =>
     photo.label.toLowerCase().includes(searchText.toLowerCase())
   );

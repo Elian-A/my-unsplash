@@ -6,7 +6,7 @@ type SearchContextType = {
   setSearchText: Dispatch<SetStateAction<string>>;
 };
 
-export const searchContext = createContext<SearchContextType>({
+export const SearchContext = createContext<SearchContextType>({
   searchText: "",
   setSearchText: () => ({}),
 });
@@ -18,6 +18,6 @@ export const SearchProvider: FC<{ children: ReactElement }> = ({
   const value = { searchText, setSearchText };
 
   return (
-    <searchContext.Provider value={value}>{children}</searchContext.Provider>
+    <SearchContext.Provider value={value}>{children}</SearchContext.Provider>
   );
 };

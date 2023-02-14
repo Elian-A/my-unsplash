@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import type { ChangeEvent } from "react";
-import { searchContext } from "../context/search";
+import { SearchContext } from "../context/searchContext";
 
 const Header = () => {
-  const { setSearchText } = useContext(searchContext);
+  const { setSearchText } = useContext(SearchContext);
 
   const [debounceTimeOut, setDebounceTimeOut] = useState<
     string | NodeJS.Timeout

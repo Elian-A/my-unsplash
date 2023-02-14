@@ -3,7 +3,7 @@ import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
 import { Montserrat, Noto_Sans } from "@next/font/google";
-import { SearchProvider } from "../context/search";
+import { SearchProvider } from "../context/searchContext";
 
 const noto_sans = Noto_Sans({
   subsets: ["latin"],
