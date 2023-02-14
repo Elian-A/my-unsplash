@@ -10,7 +10,7 @@ const Photos: FC<{ photos: Photo[] }> = ({ photos }) => {
     photo.label.toLowerCase().includes(searchText.toLowerCase())
   );
   return (
-    <div className="grid-wrapper min-h-main gap-7">
+    <div className="grid-wrapper gap-7">
       {searchText === ""
         ? photos.map((photo) => <Picture key={photo.id} photo={photo} />)
         : filteredPhotos.map((photo) => (

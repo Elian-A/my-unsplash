@@ -21,7 +21,7 @@ const Header = () => {
     setDebounceTimeOut(debounceTimeOutId);
   };
   return (
-    <header className="flex min-h-header gap-4 pt-8 font-sans text-md">
+    <header className="mt-8 flex h-header justify-center gap-4 font-sans text-md">
       <Link href={"/"} className="w-32">
         <div className="relative h-full w-full">
           <Image

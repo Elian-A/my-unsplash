@@ -14,7 +14,7 @@
   --fs-lg: 1.125rem;
   --fs-xl: 1.5rem;
 
-  --header-height: 5rem;
+  --header-height: 3rem;
 }
 
 @layer components {
