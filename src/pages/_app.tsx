@@ -4,6 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
 import { Montserrat, Noto_Sans } from "@next/font/google";
 import { SearchProvider } from "../context/searchContext";
+import { ModalProvider } from "../context/modalContext";
 
 const noto_sans = Noto_Sans({
   subsets: ["latin"],
@@ -23,11 +24,13 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <SearchProvider>
-        <div className={`${noto_sans.variable} ${montserrat.variable}`}>
-          <Component {...pageProps} />
-        </div>
-      </SearchProvider>
+      <ModalProvider>
+        <SearchProvider>
+          <div className={`${noto_sans.variable} ${montserrat.variable}`}>
+            <Component {...pageProps} />
+          </div>
+        </SearchProvider>
+      </ModalProvider>
     </SessionProvider>
   );
 };
