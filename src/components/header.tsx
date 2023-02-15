@@ -28,7 +28,7 @@ const Header = () => {
   };
   return (
     <header className="mt-8 flex h-header justify-center gap-4 font-sans text-md">
-      <Link href={"/"} className="w-32">
+      <Link href={"/"} className="w-0 sm:w-32">
         <div className="relative h-full w-full">
           <Image
             src="my_unsplash_logo.svg"
@@ -51,7 +51,7 @@ const Header = () => {
       <div className=" ml-auto w-[137px]">
         <button
           onClick={handleModal}
-          className=" h-full w-full rounded-xl bg-primary-500 p-3 font-bold text-neutral-100"
+          className=" h-full w-full rounded-xl bg-primary-500 px-3 font-bold text-neutral-100 md:p-3"
         >
           Add a photo
         </button>
