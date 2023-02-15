@@ -17,12 +17,15 @@ const getModal = (type: ModalType) => {
 const Modal: FC = () => {
   const { type, toggleModalView } = useContext(ModalContext);
   const ModalComponent = getModal(type);
+
   const handleBackgroundClick = () => {
     toggleModalView(false);
   };
+
   const preventPropagation: MouseEventHandler<HTMLDivElement> = (e) => {
     e.stopPropagation();
   };
+
   return (
     <div
       onClick={handleBackgroundClick}
