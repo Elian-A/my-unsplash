@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import { Montserrat, Noto_Sans } from "@next/font/google";
 import { SearchProvider } from "../context/searchContext";
 import { ModalProvider } from "../context/modalContext";
+import { ImageProvider } from "../context/imageContext";
 
 const noto_sans = Noto_Sans({
   subsets: ["latin"],
@@ -26,9 +27,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <SessionProvider session={session}>
       <ModalProvider>
         <SearchProvider>
-          <div className={`${noto_sans.variable} ${montserrat.variable}`}>
-            <Component {...pageProps} />
-          </div>
+          <ImageProvider>
+            <div className={`${noto_sans.variable} ${montserrat.variable}`}>
+              <Component {...pageProps} />
+            </div>
+          </ImageProvider>
         </SearchProvider>
       </ModalProvider>
     </SessionProvider>
