@@ -3,8 +3,9 @@ import type { FormEventHandler } from "react";
 
 import { z } from "zod";
 import FormInput from "./formInput";
-import type { FormError } from "./modal";
+
 import { ModalContext } from "../context/modalContext";
+import type { FormError } from "../types";
 
 const modalValidator = z.object({
   label: z.string().min(1).max(20),

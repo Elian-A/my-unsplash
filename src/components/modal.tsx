@@ -5,11 +5,6 @@ import { ModalContext } from "../context/modalContext";
 import AddModal from "./addModal";
 import DeleteModal from "./deleteModal";
 
-export type FormError = {
-  message: string;
-  path: string;
-};
-
 const getModal = (type: ModalType) => {
   switch (type) {
     case "add":
