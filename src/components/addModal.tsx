@@ -8,6 +8,7 @@ import { postImage } from "../utils/image";
 import type { FormError } from "../types";
 
 import { z } from "zod";
+import { ImageContext } from "../context/imageContext";
 export const addFormValidator = z.object({
   label: z.string().min(1).max(20),
   url: z.string().url(),
@@ -16,6 +17,7 @@ export const addFormValidator = z.object({
 const AddModal = () => {
   const [errors, setErrors] = useState<FormError[]>([]);
   const { toggleModalView } = useContext(ModalContext);
+  const { addPhotos } = useContext(ImageContext);
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
@@ -36,12 +38,14 @@ const AddModal = () => {
 
     const image = validatedForm.data;
     postImage(image)
-      .then((res) => {
-        // Update photos
-        console.log("Update images dude!!", { res });
+      .then((photo) => {
+        addPhotos([photo]);
         // Close modal
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        // Close modal
+      });
   };
 
   const findError = useCallback(
