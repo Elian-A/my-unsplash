@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { addFormValidator } from "../../components/modal";
+import { addFormValidator } from "../../components/addModal";
 import { getServerAuthSession } from "../../server/auth";
 import { prisma } from "../../server/db";
 
