@@ -40,11 +40,11 @@ const AddModal = () => {
     postImage(image)
       .then((photo) => {
         addPhotos([photo]);
-        // Close modal
+        toggleModalView(false);
       })
       .catch((err) => {
         console.error(err);
-        // Close modal
+        toggleModalView(false);
       });
   };
 
