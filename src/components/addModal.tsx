@@ -1,13 +1,14 @@
 import { useCallback, useContext, useState } from "react";
 import type { FormEventHandler } from "react";
 
-import { z } from "zod";
 import FormInput from "./formInput";
 
 import { ModalContext } from "../context/modalContext";
+import { postImage } from "../utils/image";
 import type { FormError } from "../types";
 
-const modalValidator = z.object({
+import { z } from "zod";
+export const addFormValidator = z.object({
   label: z.string().min(1).max(20),
   url: z.string().url(),
 });
@@ -20,19 +21,27 @@ const AddModal = () => {
     e.preventDefault();
     const formElement = e.target as HTMLFormElement;
     const formInputs = Object.fromEntries(new FormData(formElement));
-    const validatedform = modalValidator.safeParse(formInputs);
-    if (!validatedform.success) {
-      const zodErrors = validatedform.error.errors.map(({ path, message }) => ({
-        message,
-        path: path.toString(),
-      }));
-      setErrors(zodErrors);
+    const validatedForm = addFormValidator.safeParse(formInputs);
+
+    if (!validatedForm.success) {
+      const zodErrors = validatedForm.error.errors;
+      setErrors(
+        zodErrors.map(({ path, message }) => ({
+          message,
+          path: path.toString(),
+        }))
+      );
+      return;
     }
 
-    /* TODO: 
-           Send to backend 
-           Close modal
-    */
+    const image = validatedForm.data;
+    postImage(image)
+      .then((res) => {
+        // Update photos
+        console.log("Update images dude!!", { res });
+        // Close modal
+      })
+      .catch((err) => console.error(err));
   };
 
   const findError = useCallback(

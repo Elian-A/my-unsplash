@@ -1,7 +1,8 @@
-import type { FC, MouseEventHandler } from "react";
-import type { ModalType } from "../context/modalContext";
 import { useContext } from "react";
+import type { FC, MouseEventHandler } from "react";
 import { ModalContext } from "../context/modalContext";
+import type { ModalType } from "../context/modalContext";
+
 import AddModal from "./addModal";
 import DeleteModal from "./deleteModal";
 
