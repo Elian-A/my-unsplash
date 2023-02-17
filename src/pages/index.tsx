@@ -14,7 +14,7 @@ const Home: NextPage<{ authData: Session; userPhotos: Photo[] }> = ({
   const { addPhotos, photos } = useContext(ImageContext);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => addPhotos(userPhotos), []);
+  useEffect(() => addPhotos([...userPhotos].reverse()), []);
 
   return (
     <Layout title="My unsplash | Home">
