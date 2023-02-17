@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import type { FC, Dispatch, SetStateAction } from "react";
-import type { FormError } from "./modal";
+import type { FormError } from "../types";
 
 interface FormInputInterface {
   label: string;
+  type?: "text" | "password";
   placeholder: string;
   error: FormError | null;
   setErrors: Dispatch<SetStateAction<FormError[]>>;
@@ -13,6 +14,7 @@ const FormInput: FC<FormInputInterface> = ({
   label,
   placeholder,
   error,
+  type = "text",
   setErrors,
 }) => {
   useEffect(() => {
@@ -21,11 +23,11 @@ const FormInput: FC<FormInputInterface> = ({
   }, [error, setErrors]);
   return (
     <div className="grid gap-1 ">
-      <label htmlFor={label} className="text-md">
+      <label htmlFor={label} className="text-md capitalize">
         {label}
       </label>
       <input
-        type="text"
+        type={type}
         id={label}
         name={label}
         placeholder={placeholder}
