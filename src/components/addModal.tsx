@@ -75,7 +75,7 @@ const AddModal = () => {
             className="text-sm text-neutral-600"
             onClick={() => toggleModalView(false)}
           >
-            cancel
+            Cancel
           </button>
           <button
             type="submit"

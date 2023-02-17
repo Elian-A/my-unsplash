@@ -30,7 +30,7 @@ const DeleteModal = () => {
           error={findError("label")}
           setErrors={setErrors}
         />
-        <div className="flex justify-end gap-8 align-middle">
+        <div className="flex justify-end gap-8 align-middle capitalize">
           <button
             type="button"
             className="text-sm text-neutral-600"
