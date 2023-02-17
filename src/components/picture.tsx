@@ -1,10 +1,17 @@
 import type { Photo } from "@prisma/client";
 import Image from "next/image";
+import { useContext } from "react";
 import type { FC } from "react";
+import { ModalContext } from "../context/modalContext";
 
 const Picture: FC<{ photo: Photo }> = ({ photo }) => {
   const { url, label } = photo;
+  const { toggleModalView, setType } = useContext(ModalContext);
   const isLarge = Math.random() > 0.5;
+  const handleDelete = () => {
+    setType("delete");
+    toggleModalView(true);
+  };
   return (
     <div
       className={`group relative cursor-pointer overflow-auto rounded-xl shadow-lg shadow-slate-500  hover:scale-110 hover:rounded-2xl ${
@@ -23,7 +30,10 @@ const Picture: FC<{ photo: Photo }> = ({ photo }) => {
       <div className="relative z-10 mt-4 mr-4 self-end">
         {/* I dont know why next-font isn't working,
          fw-500 is not accesible even when is especified in _app  */}
-        <button className="rounded-3xl border-2 border-secondary-400 py-1 px-5 font-accent text-sm text-secondary-400 contrast-125 hover:scale-110 hover:contrast-200">
+        <button
+          onClick={handleDelete}
+          className="rounded-3xl border-2 border-secondary-400 py-1 px-5 font-accent text-sm text-secondary-400 contrast-125 hover:scale-110 hover:contrast-200"
+        >
           delete
         </button>
       </div>
