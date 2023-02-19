@@ -14,7 +14,7 @@ const Picture: FC<{ photo: Photo }> = ({ photo }) => {
   };
   return (
     <div
-      className={`group relative cursor-pointer overflow-auto rounded-xl shadow-lg shadow-slate-500  hover:scale-110 hover:rounded-2xl ${
+      className={`group relative max-w-sm cursor-pointer overflow-auto rounded-xl shadow-lg shadow-slate-500  hover:scale-110 hover:rounded-2xl ${
         isLarge ? "row-span-2" : ""
       } flex flex-col`}
     >
