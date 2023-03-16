@@ -18,7 +18,7 @@ model Photo {
     id        String   @id @default(cuid())
     userId    String
     label     String
-    url       String   @unique
+    url       String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     user      User     @relation(fields: [userId], references: [id])
