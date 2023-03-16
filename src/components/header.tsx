@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import type { ChangeEvent } from "react";
 import { SearchContext } from "../context/searchContext";
 import { ModalContext } from "../context/modalContext";
+import SearchSvg from "./svg/SearchSvg";
 
 const Header = () => {
   const { setSearchText } = useContext(SearchContext);
@@ -38,12 +39,13 @@ const Header = () => {
           />
         </div>
       </Link>
-      <div className="flex gap-3 rounded-xl border pl-3">
-        {/* Todo: Make the icon live inside input */}
-        <Image src="search.svg" alt="search" width={18} height={18} />
+      <div className="relative flex gap-3 rounded-xl border">
+        <div className="absolute top-1/4 left-2">
+          <SearchSvg />
+        </div>
         <input
           type="text"
-          className="bg-transparent"
+          className="rounded-xl bg-transparent pl-10"
           placeholder="Search by name"
           onChange={handleSearch}
         />
