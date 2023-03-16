@@ -20,10 +20,13 @@ const DeleteModal = () => {
     );
     if (title === image?.title) {
       const id = image?.id as string;
-      deleteImage(id);
-      setImage(null);
-      deletePhoto(id);
-      toggleModalView(!modalView);
+      deleteImage(id)
+        .then((res) => {
+          setImage(null);
+          deletePhoto(id);
+          toggleModalView(!modalView);
+        })
+        .catch((err) => console.log(err));
     }
     setErrors([{ message: "Wrong title", path: "label" }]);
   };
@@ -45,7 +48,8 @@ const DeleteModal = () => {
           setErrors={setErrors}
         />
         <p>
-          Enter your image title "<span>{image?.title}</span>" to delete
+          Enter your image title &quot;
+          <span className="text-red-500">{image?.title}</span>&quot; to delete
         </p>
         <div className="flex justify-end gap-8 align-middle capitalize">
           <button
