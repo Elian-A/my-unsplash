@@ -21,7 +21,7 @@ const DeleteModal = () => {
     if (title === image?.title) {
       const id = image?.id as string;
       deleteImage(id)
-        .then((res) => {
+        .then((_) => {
           setImage(null);
           deletePhoto(id);
           toggleModalView(!modalView);

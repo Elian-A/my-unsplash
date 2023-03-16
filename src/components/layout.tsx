@@ -30,8 +30,8 @@ const Layout: FC<{
 
 const LogOut = () => (
   <button
-    onClick={async () => {
-      const logout = await signOut();
+    onClick={() => {
+      signOut().catch((err) => console.error(err));
     }}
     className="absolute bottom-8 right-8 rounded-xl border py-3 px-5 shadow-lg"
   >
