@@ -35,7 +35,7 @@ export default async function handler(
     return;
   }
   if (req.method === "DELETE") {
-    const { id } = req.body;
+    const { id } = req.body as { id: string };
     console.log(req.body);
 
     if (!id)

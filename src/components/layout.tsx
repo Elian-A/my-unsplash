@@ -30,7 +30,9 @@ const Layout: FC<{
 
 const LogOut = () => (
   <button
-    onClick={() => signOut()}
+    onClick={async () => {
+      const logout = await signOut();
+    }}
     className="absolute bottom-8 right-8 rounded-xl border py-3 px-5 shadow-lg"
   >
     Log Out
