@@ -5,18 +5,16 @@ import type { FC } from "react";
 import { ModalContext } from "../context/modalContext";
 
 const Picture: FC<{ photo: Photo }> = ({ photo }) => {
-  const { url, label } = photo;
-  const { toggleModalView, setType } = useContext(ModalContext);
-  const isLarge = Math.random() > 0.5;
+  const { url, label, id } = photo;
+  const { toggleModalView, setType, setImage } = useContext(ModalContext);
   const handleDelete = () => {
     setType("delete");
+    setImage({ id, title: label });
     toggleModalView(true);
   };
   return (
     <div
-      className={`group relative max-w-sm cursor-pointer overflow-auto rounded-xl shadow-lg shadow-slate-500  hover:scale-110 hover:rounded-2xl ${
-        isLarge ? "row-span-2" : ""
-      } flex flex-col`}
+      className={`group relative flex max-w-sm cursor-pointer flex-col overflow-auto rounded-xl  shadow-lg shadow-slate-500 hover:scale-110 hover:rounded-2xl`}
     >
       <Image
         src={url}

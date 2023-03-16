@@ -4,7 +4,7 @@ import { createContext, useState } from "react";
 interface ImageContext {
   photos: Photo[];
   addPhotos: (photo: Photo[]) => void;
-  deletePhoto: (photo: Photo) => void;
+  deletePhoto: (photo: string) => void;
 }
 
 export const ImageContext = createContext<ImageContext>({
@@ -17,8 +17,8 @@ export const ImageProvider: FC<{ children: ReactElement }> = ({ children }) => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const addPhotos = (addedPhotos: Photo[]) =>
     setPhotos([...photos, ...addedPhotos]);
-  const deletePhoto = (photo: Photo) =>
-    setPhotos(photos.filter(({ id }) => id !== photo.id));
+  const deletePhoto = (id: string) =>
+    setPhotos(photos.filter((photo) => photo.id !== id));
   const value = { photos, addPhotos, deletePhoto };
   return (
     <ImageContext.Provider value={value}>{children}</ImageContext.Provider>

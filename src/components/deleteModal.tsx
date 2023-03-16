@@ -1,17 +1,31 @@
 import { useCallback, useContext, useState } from "react";
 import type { FormEventHandler } from "react";
-import { ImageContext } from "../context/imageContext";
 import { ModalContext } from "../context/modalContext";
 import type { FormError } from "../types";
 import FormInput from "./formInput";
+import { deleteImage } from "../utils/image";
+import { ImageContext } from "../context/imageContext";
 
 const DeleteModal = () => {
   const [errors, setErrors] = useState<FormError[]>([]);
-  const { toggleModalView } = useContext(ModalContext);
+  const { toggleModalView, image, setImage, modalView } =
+    useContext(ModalContext);
+  const { deletePhoto } = useContext(ImageContext);
   // const { addPhotos } = useContext(ImageContext);
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
+    const { title } = Object.fromEntries(
+      new FormData(e.target as HTMLFormElement)
+    );
+    if (title === image?.title) {
+      const id = image?.id as string;
+      deleteImage(id);
+      setImage(null);
+      deletePhoto(id);
+      toggleModalView(!modalView);
+    }
+    setErrors([{ message: "Wrong title", path: "label" }]);
   };
 
   const findError = useCallback(
@@ -24,12 +38,15 @@ const DeleteModal = () => {
       <h3 className="text-xl">Are you sure?</h3>
       <form className="grid gap-4" onSubmit={handleSubmit}>
         <FormInput
-          label="password"
-          type="password"
-          placeholder="*******************"
+          label="title"
+          type="text"
+          placeholder="...."
           error={findError("label")}
           setErrors={setErrors}
         />
+        <p>
+          Enter your image title "<span>{image?.title}</span>" to delete
+        </p>
         <div className="flex justify-end gap-8 align-middle capitalize">
           <button
             type="button"
