@@ -19,7 +19,7 @@ const Home: NextPage<{ authData: Session; userPhotos: Photo[] }> = ({
   return (
     <Layout title="My unsplash | Home">
       <div className="grid items-center">
-        {userPhotos.length === 0 ? (
+        {photos.length === 0 ? (
           <h2>You have no photos :c</h2>
         ) : (
           <Photos photos={photos} />
