@@ -27,11 +27,22 @@ export default async function handler(
     }
 
     const data = { ...validatedData.data, userId: session.user.id };
-    const { label, url, createdAt, updatedAt } = await prisma.photo.create({
+    const { label, url, createdAt, updatedAt, id } = await prisma.photo.create({
       data,
     });
 
-    res.status(201).send({ label, url, createdAt, updatedAt });
+    res.status(201).send({ label, url, createdAt, updatedAt, id });
+    return;
+  }
+  if (req.method === "DELETE") {
+    const { id } = req.body;
+    console.log(req.body);
+
+    if (!id)
+      return res.status(400).json({ code: 400, message: "No image id found" });
+    await prisma.photo.delete({ where: { id } });
+
+    res.status(200).json({ code: 200, message: "Image deleted successfully" });
     return;
   }
   res.status(403).send({ code: 400, message: "Invalid method" });
