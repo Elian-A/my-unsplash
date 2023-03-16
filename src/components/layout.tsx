@@ -4,6 +4,7 @@ import Header from "./header";
 import { useContext } from "react";
 import { ModalContext } from "../context/modalContext";
 import Modal from "./modal";
+import { signOut } from "next-auth/react";
 
 const Layout: FC<{
   children: ReactElement | ReactElement[];
@@ -18,10 +19,22 @@ const Layout: FC<{
         <link rel="icon" href="devchallenges.png" />
       </Head>
       <Header />
-      <main className="">{children}</main>
+      <main className="">
+        {children}
+        <LogOut />
+      </main>
       {modalView ? <Modal /> : <div></div>}
     </div>
   );
 };
+
+const LogOut = () => (
+  <button
+    onClick={() => signOut()}
+    className="absolute bottom-8 right-8 rounded-xl border py-3 px-5 shadow-lg"
+  >
+    Log Out
+  </button>
+);
 
 export default Layout;
