@@ -21,12 +21,13 @@ const DeleteModal = () => {
     if (title === image?.title) {
       const id = image?.id as string;
       deleteImage(id)
-        .then((_) => {
+        .then(() => {
           setImage(null);
           deletePhoto(id);
           toggleModalView(!modalView);
         })
         .catch((err) => console.log(err));
+      return;
     }
     setErrors([{ message: "Wrong title", path: "label" }]);
   };
